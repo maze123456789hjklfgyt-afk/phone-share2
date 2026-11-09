@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>معلومات الجهاز</title>
+</head>
+<body>
+<h2>معلومات جهازك</h2>
+
+<p>اضغط للموافقة على عرض معلومات المتصفح.</p>
+<button onclick="getInfo()">عرض المعلومات</button>
+
+<div id="result"></div>
+
+<script>
+function getInfo() {
+  const info = {
+    "المتصفح": navigator.userAgent,
+    "نظام التشغيل": navigator.platform,
+    "لغة الجهاز": navigator.language,
+    "عدد أنوية المعالج المنطقي":
+      navigator.hardwareConcurrency || "غير متاح",
+    "الذاكرة التقريبية":
+      navigator.deviceMemory
+        ? navigator.deviceMemory + " GB"
+        : "غير متاح",
+    "حجم الشاشة":
+      screen.width + " × " + screen.height,
+    "حجم نافذة المتصفح":
+      window.innerWidth + " × " + window.innerHeight,
+    "الاتصال": navigator.onLine ? "متصل" : "غير متصل"
+  };
+
+  document.getElementById("result").innerHTML =
+    Object.entries(info)
+      .map(([key, value]) =>
+        `<p><b>${key}:</b> ${value}</p>`
+      ).join("");
+}
+</script>
+</body>
+</html>
